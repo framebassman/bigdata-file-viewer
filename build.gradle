@@ -69,7 +69,7 @@ runtime {
 // (You need to also uncomment the line 'targetPlatformName = ...' in the jpackage block.)
 //
     targetPlatform("lin") {
-        jdkHome = jdkDownload("https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_linux-x64_bin-sdk.zip")
+        jdkHome = jdkDownload("https://github.com/hmsjy2017/get-jdk/releases/download/v8u231/jdk-8u231-linux-x64.tar.gz")
     }
 /*
     targetPlatform("mac") {
