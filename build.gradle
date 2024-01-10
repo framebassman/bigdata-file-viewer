@@ -69,7 +69,7 @@ runtime {
 // (You need to also uncomment the line 'targetPlatformName = ...' in the jpackage block.)
 //
     targetPlatform("lin") {
-        jdkHome = jdkDownload("https://github.com/hmsjy2017/get-jdk/releases/download/v8u231/jdk-8u231-linux-x64.tar.gz")
+        jdkHome = jdkDownload("https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.9.1%2B1/OpenJDK11U-jdk_x64_linux_hotspot_11.0.9.1_1.tar.gz")
     }
 /*
     targetPlatform("mac") {
