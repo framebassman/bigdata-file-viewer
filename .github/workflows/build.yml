@@ -25,7 +25,7 @@ jobs:
           gradle-version: 7.6.1
 
       - name: Execute build
-        run: gradle --info --stacktrace build
+        run: gradle --info --stacktrace build +x test
 
       - name: Execute runtime
         run: gradle --info --stacktrace runtime
@@ -33,7 +33,8 @@ jobs:
       - name: Execute jpackage
         run: gradle --info --stacktrace jpackage
 
-      - uses: actions/upload-artifact@v1
+      - name: Upload DEB as an artifact
+        uses: actions/upload-artifact@v2
         with:
-          name: Linux binaries
-          path: build/libs
+          name: bigdata-file-viewer-jdk11-ubuntu-latest-deb
+          path: build/jpackage/*.deb
