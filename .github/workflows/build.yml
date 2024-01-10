@@ -24,8 +24,14 @@ jobs:
         with:
           gradle-version: 7.6.1
 
-      - name: Build
-        run: gradle jpackageImage --info
+      - name: Execute build
+        run: gradle --info --stacktrace build
+
+      - name: Execute runtime
+        run: gradle --info --stacktrace runtime
+
+      - name: Execute jpackage
+        run: gradle --info --stacktrace jpackage
 
       - uses: actions/upload-artifact@v1
         with:
