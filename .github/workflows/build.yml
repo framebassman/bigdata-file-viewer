@@ -23,6 +23,9 @@ jobs:
         with:
           gradle-version: 7.6.1
 
+      - name: Build
+        run: gradle jpackageImage --info
+
       - uses: actions/upload-artifact@v1
         with:
           name: Linux binaries
