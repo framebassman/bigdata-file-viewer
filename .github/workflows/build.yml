@@ -21,7 +21,7 @@ jobs:
       - uses: gradle/gradle-build-action@v2
         name: Setup Gradle
         with:
-          gradle-version: 7.6.1
+          gradle-version: 7.2
 
       - name: Execute build
         run: gradle build -x test
@@ -30,7 +30,7 @@ jobs:
         run: gradle runtime
 
       - name: Execute jpackage
-        run: gradle --debug jpackage
+        run: gradle --info --stacktrace jpackage
 
       - name: Upload DEB as an artifact
         uses: actions/upload-artifact@v2
