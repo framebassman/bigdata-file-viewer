@@ -14,8 +14,9 @@ jobs:
 
       - uses: actions/setup-java@v3
         with:
-          distribution: 'oracle' # See 'Supported distributions' for available options
+          distribution: 'adopt-hotspot' # See 'Supported distributions' for available options
           java-version: '11'
+          java-package: 'jdk+fx'
           cache: 'gradle'
 
       - uses: gradle/gradle-build-action@v2
