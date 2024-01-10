@@ -24,13 +24,13 @@ jobs:
           gradle-version: 7.6.1
 
       - name: Execute build
-        run: gradle --info --stacktrace build -x test
+        run: gradle build -x test
 
       - name: Execute runtime
-        run: gradle --info --stacktrace runtime
+        run: gradle runtime
 
       - name: Execute jpackage
-        run: gradle --info --stacktrace jpackage
+        run: gradle --debug jpackage
 
       - name: Upload DEB as an artifact
         uses: actions/upload-artifact@v2
