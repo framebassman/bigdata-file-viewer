@@ -57,6 +57,19 @@ jobs:
           name: bigdata-file-viewer-jdk15-ubuntu-latest.deb
           path: build/jpackage/*.deb
 
+      - name: kill java processes
+        run: |
+          wmic process where "name like '%java%'" delete
+          taskkill /f /im jqs.exe
+          taskkill /f /im javaw.exe
+          taskkill /f /im java.exe
+        continue-on-error: true
+      - name: Enforce cache update
+        shell: bash
+        run: |
+          STATE_CACHE_KEY="gradle-build-${{ runner.os }}-${{ hashFiles('**/*.gradle', '**/*.properties', '**/*.xml', '**/*.java', '**/*.kt') }}"
+          echo "STATE_CACHE_KEY=${STATE_CACHE_KEY}" >> $GITHUB_ENV
+
   mac:
     name: Build mac package
     runs-on: macos-12
