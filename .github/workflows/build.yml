@@ -59,65 +59,63 @@ jobs:
 
       - name: kill java processes
         run: |
-          wmic process where "name like '%java%'" delete
-          taskkill /f /im jqs.exe
-          taskkill /f /im javaw.exe
-          taskkill /f /im java.exe
+          killall -9 java
         continue-on-error: true
+
       - name: Enforce cache update
         shell: bash
         run: |
           STATE_CACHE_KEY="gradle-build-${{ runner.os }}-${{ hashFiles('**/*.gradle', '**/*.properties', '**/*.xml', '**/*.java', '**/*.kt') }}"
           echo "STATE_CACHE_KEY=${STATE_CACHE_KEY}" >> $GITHUB_ENV
 
-  mac:
-    name: Build mac package
-    runs-on: macos-12
-    steps:
-      - name: Check out the codebase.
-        uses: actions/checkout@v3
-
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt-hotspot' # See 'Supported distributions' for available options
-          java-version: '15.0.1'
-          cache: 'gradle'
-
-      - uses: gradle/gradle-build-action@v2
-        name: Setup Gradle
-        with:
-          gradle-version: 7.6.3
-          cache-overwrite-existing: true
-
-      - name: cache build folders
-        uses: actions/cache@v3
-        with:
-          path: |
-            ./bigdata-file-viewer/build
-            ./build
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            $HOME/.m2/repository
-            ~/.m2/repository
-            ./.gradle
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
-          restore-keys: |
-            gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
-            gradle-${{ runner.os }}-
-            gradle-${{ runner.os }}
-            gradle-
-
-      - name: Execute build
-        run: gradle build -x test
-
-      - name: Execute runtime
-        run: gradle runtime
-
-      - name: Execute jpackage
-        run: gradle --info --stacktrace jpackage
-
-      - name: Upload DEB as an artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: bigdata-file-viewer-jdk15-ubuntu-latest.dmg
-          path: build/jpackage/*.dmg
+#  mac:
+#    name: Build mac package
+#    runs-on: macos-12
+#    steps:
+#      - name: Check out the codebase.
+#        uses: actions/checkout@v3
+#
+#      - uses: actions/setup-java@v3
+#        with:
+#          distribution: 'adopt-hotspot' # See 'Supported distributions' for available options
+#          java-version: '15.0.1'
+#          cache: 'gradle'
+#
+#      - uses: gradle/gradle-build-action@v2
+#        name: Setup Gradle
+#        with:
+#          gradle-version: 7.6.3
+#          cache-overwrite-existing: true
+#
+#      - name: cache build folders
+#        uses: actions/cache@v3
+#        with:
+#          path: |
+#            ./bigdata-file-viewer/build
+#            ./build
+#            ~/.gradle/caches
+#            ~/.gradle/wrapper
+#            $HOME/.m2/repository
+#            ~/.m2/repository
+#            ./.gradle
+#          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+#          restore-keys: |
+#            gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+#            gradle-${{ runner.os }}-
+#            gradle-${{ runner.os }}
+#            gradle-
+#
+#      - name: Execute build
+#        run: gradle build -x test
+#
+#      - name: Execute runtime
+#        run: gradle runtime
+#
+#      - name: Execute jpackage
+#        run: gradle --info --stacktrace jpackage
+#
+#      - name: Upload DEB as an artifact
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: bigdata-file-viewer-jdk15-ubuntu-latest.dmg
+#          path: build/jpackage/*.dmg
