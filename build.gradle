@@ -54,6 +54,7 @@ runtime {
         imageOptions += ['--icon', "src/main/resources/hellofx.$imgType"]
         installerOptions += ['--resource-dir', "src/main/resources"]
         installerOptions += ['--vendor', 'Acme Corporation']
+        installerType = "deb"
 
         if(currentOs.windows) {
             installerOptions += ['--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut']
