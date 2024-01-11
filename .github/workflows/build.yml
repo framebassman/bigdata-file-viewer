@@ -35,5 +35,5 @@ jobs:
       - name: Upload DEB as an artifact
         uses: actions/upload-artifact@v2
         with:
-          name: bigdata-file-viewer-jdk11-ubuntu-latest-deb
+          name: bigdata-file-viewer-jdk11-ubuntu-latest.deb
           path: build/jpackage/*.deb
