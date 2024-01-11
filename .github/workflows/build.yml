@@ -21,7 +21,7 @@ jobs:
       - uses: gradle/gradle-build-action@v2
         name: Setup Gradle
         with:
-          gradle-version: 7.2
+          gradle-version: 7.6.3
 
       - name: Execute build
         run: gradle build -x test
@@ -33,7 +33,7 @@ jobs:
         run: gradle --info --stacktrace jpackage
 
       - name: Upload DEB as an artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
-          name: bigdata-file-viewer-jdk11-ubuntu-latest.deb
+          name: bigdata-file-viewer-jdk15-ubuntu-latest.deb
           path: build/jpackage/*.deb
