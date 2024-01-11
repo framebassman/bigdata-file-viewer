@@ -41,7 +41,7 @@ dependencies {
 }
 
 group = 'org.eugene'
-version = '1.3-SNAPSHOT'
+version = '1.3.1'
 description = 'BigdataFileViewer'
 java.sourceCompatibility = JavaVersion.VERSION_15
 

@@ -22,6 +22,25 @@ jobs:
         name: Setup Gradle
         with:
           gradle-version: 7.6.3
+          cache-overwrite-existing: true
+
+     - name: cache build folders
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./bigdata-file-viewer/build
+            ./build
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            $HOME/.m2/repository
+            ~/.m2/repository
+            ./.gradle
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+            gradle-${{ runner.os }}-
+            gradle-${{ runner.os }}
+            gradle-
 
       - name: Execute build
         run: gradle build -x test
@@ -55,6 +74,25 @@ jobs:
         name: Setup Gradle
         with:
           gradle-version: 7.6.3
+          cache-overwrite-existing: true
+
+     - name: cache build folders
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./bigdata-file-viewer/build
+            ./build
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            $HOME/.m2/repository
+            ~/.m2/repository
+            ./.gradle
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+            gradle-${{ runner.os }}-
+            gradle-${{ runner.os }}
+            gradle-
 
       - name: Execute build
         run: gradle build -x test
